@@ -1,73 +1,69 @@
-﻿
-# include <Siv3D.hpp> // OpenSiv3D v0.4.1
+﻿#include <Siv3D.hpp> // OpenSiv3D v0.4.1
 
-void Main()
-{
-	// 背景を水色にする
-	Scene::SetBackground(ColorF(0.8, 0.9, 1.0));
-
-	// 大きさ 60 のフォントを用意
-	const Font font(60);
-
-	// 猫のテクスチャを用意
-	const Texture cat(Emoji(U"🐈"));
-
-	// 猫の座標
-	Vec2 catPos(640, 450);
-
-	while (System::Update())
-	{
-		// テキストを画面の中心に描く
-		font(U"Hello, Siv3D!🐣").drawAt(Scene::Center(), Palette::Black);
-
-		// 大きさをアニメーションさせて猫を表示する
-		cat.resized(100 + Periodic::Sine0_1(1s) * 20).drawAt(catPos);
-
-		// マウスカーソルに追従する半透明の赤い円を描く
-		Circle(Cursor::Pos(), 40).draw(ColorF(1, 0, 0, 0.5));
-
-		// [A] キーが押されたら
-		if (KeyA.down())
-		{
-			// Hello とデバッグ表示する
-			Print << U"Hello!";
+class playable_character {
+public:
+	Circle circle;
+	Vec2 velocity;
+	void draw(double& camera_pos) {
+		circle.movedBy(0, camera_pos).draw(Palette::Blueviolet);
+	}
+	void move() {
+		circle.center += velocity;
+		if (circle.y >= 680) {
+			circle.y = 680;
+			velocity.x = 0;
+			velocity.y = 0;
 		}
+		if (circle.x < 70) {
+			circle.x = 71;
+			velocity.x = -velocity.x;
+		}
+		if (circle.x > 530) {
+			circle.x = 529;
+			velocity.x = -velocity.x;
+		}
+	}
+	void gravity() {
+		velocity.y += 0.5;
+	}
+	void accelerate(double& camera_pos) {
+		velocity = (Cursor::PosF().movedBy(0, -camera_pos) - circle.center) / (Cursor::PosF().movedBy(0, -camera_pos) - circle.center).length() * 10;
+		velocity.y *= 2;
+	}
+};
 
-		// ボタンが押されたら
-		if (SimpleGUI::Button(U"Move the cat", Vec2(600, 20)))
-		{
-			// 猫の座標を画面内のランダムな位置に移動する
-			catPos = RandomVec2(Scene::Rect());
+void Main() {
+	Scene::SetBackground(ColorF(0.8, 0.9, 1.0));
+	Window::Resize(800, 800);
+	const Rect ground(0, 700, 600, 200);
+	const Rect left_wall(0, 0, 50, 800);
+	const Rect right_wall(550, 0, 50, 800);
+	Array<Rect>barrier;
+	playable_character p;
+	double camera_pos = 0;
+	p.circle = Circle(550, 550, 20);
+	p.velocity = Vec2(0, 0);
+	for (int i = 0; i <= 50000; i += Random(100, 500)) {
+		barrier.push_back(Rect(Random(50, 500), -i, 50, 50));
+	}
+	while (System::Update()) {
+		p.draw(camera_pos);
+		p.move();
+		p.gravity();
+		if (MouseL.down()) {
+			p.accelerate(camera_pos);
+		}
+		for (Rect& r : barrier) {
+			r.movedBy(0, camera_pos).draw(Palette::Red);
+		}
+		ground.movedBy(0, camera_pos).draw(Palette::Blue);
+		left_wall.draw(Palette::Black);
+		right_wall.draw(Palette::Black);
+		if (p.circle.y + camera_pos < 500) {
+			camera_pos = 500 - p.circle.y;
+		}
+		if (p.circle.y + camera_pos > 700) {
+			camera_pos = 700 - p.circle.y;
 		}
 	}
 }
-
-//
-// = アドバイス =
-// Debug ビルドではプログラムの最適化がオフになります。
-// 実行速度が遅いと感じた場合は Release ビルドを試しましょう。
-// アプリをリリースするときにも、Release ビルドにするのを忘れないように！
-//
-// 思ったように動作しない場合は「デバッグの開始」でプログラムを実行すると、
-// 出力ウィンドウに詳細なログが表示されるので、エラーの原因を見つけやすくなります。
-//
-// = お役立ちリンク =
-//
-// OpenSiv3D リファレンス
-// https://siv3d.github.io/ja-jp/
-//
-// チュートリアル
-// https://siv3d.github.io/ja-jp/tutorial/basic/
-//
-// よくある間違い
-// https://siv3d.github.io/ja-jp/articles/mistakes/
-//
-// サポートについて
-// https://siv3d.github.io/ja-jp/support/support/
-//
-// Siv3D Slack (ユーザコミュニティ) への参加
-// https://siv3d.github.io/ja-jp/community/community/
-//
-// 新機能の提案やバグの報告
-// https://github.com/Siv3D/OpenSiv3D/issues
-//
