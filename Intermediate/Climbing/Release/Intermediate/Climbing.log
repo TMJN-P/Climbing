@@ -1,12 +1,19 @@
 ﻿  Main.cpp
-C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(81,32): warning C4244: '引数': 's3d::Circle::size_type' から 's3d::uint32' への変換です。データが失われる可能性があります。
-C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(87,21): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-     ライブラリ C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Intermediate\Climbing\Release\Climbing.lib とオブジェクト C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Intermediate\Climbing\Release\Climbing.exp を作成中
+C:\workspace\Climbing\Climbing\Climbing\Main.cpp(44,26): warning C4100: 'camera_pos': 引数は関数の本体部で 1 度も参照されません。
+C:\workspace\Climbing\Climbing\Climbing\Main.cpp(71,11): warning C4456: 't' を宣言すると、以前のローカル宣言が隠蔽されます
+C:\workspace\Climbing\Climbing\Climbing\Main.cpp(61,6): message : 't' の宣言を確認してください
+C:\workspace\Climbing\Climbing\Climbing\Main.cpp(83,17): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\workspace\Climbing\Climbing\Climbing\Main.cpp(85,36): warning C4267: '初期化中': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\workspace\Climbing\Climbing\Climbing\Main.cpp(92,17): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\workspace\Climbing\Climbing\Climbing\Main.cpp(94,34): warning C4267: '初期化中': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\workspace\Climbing\Climbing\Climbing\Main.cpp(101,32): warning C4244: '引数': 's3d::Circle::size_type' から 's3d::uint32' への変換です。データが失われる可能性があります。
+C:\workspace\Climbing\Climbing\Climbing\Main.cpp(107,21): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+     ライブラリ C:\workspace\Climbing\Climbing\Intermediate\Climbing\Release\Climbing.lib とオブジェクト C:\workspace\Climbing\Climbing\Intermediate\Climbing\Release\Climbing.exp を作成中
   コード生成しています。
-  33 of 324 functions (10.2%) were compiled, the rest were copied from previous compilation.
-    24 functions were new in current compilation
-    27 functions had inline decision re-evaluated but remain unchanged
+  1 of 350 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。
-  Climbing.vcxproj -> C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Intermediate\Climbing\Release\Climbing.exe
-  C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Intermediate\Climbing\Release\Climbing.exe
+  Climbing.vcxproj -> C:\workspace\Climbing\Climbing\Intermediate\Climbing\Release\Climbing.exe
+  C:\workspace\Climbing\Climbing\Intermediate\Climbing\Release\Climbing.exe
   1 個のファイルをコピーしました
