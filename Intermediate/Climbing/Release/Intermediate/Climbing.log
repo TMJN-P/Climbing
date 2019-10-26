@@ -1,11 +1,11 @@
 ﻿  Main.cpp
 C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(52,1): warning C4267: '初期化中': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
 C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(59,1): warning C4267: '初期化中': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(203,18): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
-C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(211,22): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(246,18): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(254,22): warning C4244: '引数': 'double' から 'int' への変換です。データが失われる可能性があります。
      ライブラリ C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Intermediate\Climbing\Release\Climbing.lib とオブジェクト C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Intermediate\Climbing\Release\Climbing.exp を作成中
   コード生成しています。
-  1 of 453 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  1 of 634 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。

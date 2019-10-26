@@ -101,23 +101,54 @@ void Main() {
 	const Rect left_wall(0, 0, 50, 600);
 	const Rect right_wall(600, 0, 400, 600);
 	const Rect timer_box(650, 250, 300, 100);
-	const Array<Color>color_palette{
-		Color(200, 0, 0), Color(0, 200, 0), Color(100, 100, 200), Color(200, 200, 0), Color(200, 0, 200), Color(0, 200, 200)
-	};
-
-	const Font font30_regular(30, Typeface::Regular);
-	const Font font40_regular(40, Typeface::Regular);
-	const Font font100_regular(100, Typeface::Regular);
-	const Font font60_medium(60, Typeface::Medium);
-	const Font font70_heavy(70, Typeface::Heavy);
-
-	
-	const Rect instruction_box(300, 300, 400, 100);
-	const Rect play_box(300, 450, 400, 100);
+	const Rect instruction_box(50, 450, 400, 100);
+	const Rect play_box(550, 450, 400, 100);
 	const Rect difficulty_easy_box(300, 100, 400, 100);
 	const Rect difficulty_medium_box(300, 250, 400, 100);
 	const Rect difficulty_hard_box(300, 400, 400, 100);
 	const Rect return_box(50, 500, 140, 70);
+	const Array<Color>color_palette {
+		Color(200, 0, 0), Color(0, 200, 0), Color(100, 100, 200), Color(200, 200, 0), Color(200, 0, 200), Color(0, 200, 200)
+	};
+	const Array<Shape2D> title_star{
+		Shape2D::Star(13, Vec2(30, 80)), Shape2D::Star(13, Vec2(250, 340)), Shape2D::Star(13, Vec2(900, 400)), Shape2D::Star(13, Vec2(850, 100)), Shape2D::Star(13, Vec2(400, 390)), Shape2D::Star(13, Vec2(100, 300))
+	};
+	const Polygon logo_s {
+		{Vec2(170, 30), Vec2(260, 30), Vec2(260, 60), Vec2(200, 60), Vec2(200, 90), Vec2(260, 90), Vec2(260, 180), Vec2(170, 180), Vec2(170, 150), Vec2(230, 150), Vec2(230, 120), Vec2(170, 120)}
+	};
+	const Polygon logo_u {
+		{Vec2(290, 30), Vec2(320, 30), Vec2(320, 150), Vec2(350, 150), Vec2(350, 30), Vec2(380, 30), Vec2(380, 180), Vec2(290, 180)}
+	};
+	const Polygon logo_p{
+		{Vec2(410, 30), Vec2(500, 30), Vec2(500, 120), Vec2(440, 120), Vec2(440, 180), Vec2(410, 180)},
+		{{Vec2(440, 60), Vec2(440, 90), Vec2(470, 90), Vec2(470, 60)}}
+	};
+	const Polygon logo_e{
+		{Vec2(530, 30), Vec2(620, 30), Vec2(620, 60), Vec2(560, 60), Vec2(560, 90), Vec2(620, 90), Vec2(620, 120), Vec2(560, 120), Vec2(560, 150), Vec2(620, 150), Vec2(620, 180), Vec2(530, 180)}
+	};
+	const Polygon logo_r{
+		{Vec2(650, 30), Vec2(725, 30), Vec2(740, 45), Vec2(740, 90), Vec2(725, 105), Vec2(740, 120), Vec2(740, 180), Vec2(710, 180), Vec2(710, 120), Vec2(680, 120), Vec2(680, 180), Vec2(650, 180)},
+		{{Vec2(680, 60), Vec2(680, 90), Vec2(710, 90), Vec2(710, 60)}}
+	};
+	const Polygon logo_b{
+		{Vec2(410, 210), Vec2(485, 210), Vec2(500, 225), Vec2(500, 270), Vec2(485, 285), Vec2(500, 300), Vec2(500, 360), Vec2(410, 360)},
+		{{Vec2(440, 240), Vec2(440, 270), Vec2(470, 270), Vec2(470, 240)}, {Vec2(440, 300), Vec2(440, 330), Vec2(470, 330), Vec2(470, 300)}}
+	};
+	const Polygon logo_a{
+		{Vec2(560, 210), Vec2(590, 210), Vec2(620, 240), Vec2(620, 360), Vec2(590, 360), Vec2(590, 300), Vec2(560, 300), Vec2(560, 360), Vec2(530, 360), Vec2(530, 240)},
+		{{Vec2(560, 240), Vec2(560, 270), Vec2(590, 270), Vec2(590, 240)}}
+	};
+	const Polygon logo_l{
+		{Vec2(650, 210), Vec2(680, 210), Vec2(680, 330), Vec2(740, 330), Vec2(740, 360), Vec2(650, 360)}
+	};
+	const Polygon logo_l2 = logo_l.movedBy(120, 0);
+
+	const Font font30_regular(30, Typeface::Regular);
+	const Font font40_regular(40, Typeface::Regular);
+	const Font font100_regular(100, Typeface::Regular);
+	const Font font255_regular(255, Typeface::Regular);
+	const Font font60_medium(60, Typeface::Medium);
+	const Font font70_heavy(70, Typeface::Heavy);
 
 	Array<Rect>scaffold;
 	Array<Polygon>jump_item;
@@ -127,6 +158,7 @@ void Main() {
 	int status = 0;//0:タイトル 1:せつめい 2:難易度選択 10:ゲーム開始前 11:ゲーム本体 12:結果発表
 	TextReader reader(U"result.txt");
 	int timer = 0;
+	double highest = 480;
 	double camera_pos = 0;
 	int gravity_frame = 0;
 	scaffold.push_back(Rect(50, 500, 550, 100));
@@ -147,6 +179,18 @@ void Main() {
 	}
 	while (System::Update()) {
 		if (status == 0) {
+			logo_s.draw();
+			logo_u.draw();
+			logo_p.draw();
+			logo_e.draw();
+			logo_r.draw();
+			logo_b.draw();
+			logo_a.draw();
+			logo_l.draw();
+			logo_l2.draw();
+			for (int i = 0; i < 6; i++) {
+				title_star[i].draw(color_palette[i]);
+			}
 			if (instruction_box.intersects(Cursor::Pos())) {
 				instruction_box.drawFrame(0, 10, Palette::Yellow);
 				font70_heavy(U"あそびかた").drawAt(instruction_box.center());
@@ -171,7 +215,7 @@ void Main() {
 			}
 		}
 		else if (status == 1) {
-			font40_regular(U"<ルール>\nとにかく高く昇っていこう！\n\nマウス操作で動かします\nクリックでジャンプ\n\n  :取ると大ジャンプします\n  :取ると重力が一時的に半分になります\n\n").drawAt(500, 300);
+			font40_regular(U"<ルール>\nとにかく高く昇っていこう！\n\nマウス操作で動かします\nクリックでジャンプ\n\n  :取ると大ジャンプします\n  :取ると重力が一定時間半分になります\n\n").drawAt(500, 300);
 			Shape2D::Star(25, Vec2(140, 385)).draw(Color(155, 255, 0)).drawFrame(2, Color(255, 255, 0));
 			Shape2D::Star(25, Vec2(140, 440)).draw(Color(255, 50, 100)).drawFrame(2, Color(255, 255, 0));
 			if (return_box.intersects(Cursor::Pos())) {
@@ -187,7 +231,7 @@ void Main() {
 			}
 		}
 		else if (status == 2) {
-
+			status = 11;
 		}
 		else if (status == 10) {
 
@@ -198,7 +242,6 @@ void Main() {
 				p.first.movedBy(0, camera_pos / 2).draw(p.second);
 			}
 			ball.draw(camera_pos);
-
 			for (Rect& r : scaffold) {
 				r.movedBy(0, camera_pos).draw(Color(255, 255, 200));
 			}
@@ -212,9 +255,12 @@ void Main() {
 			left_wall.draw(Color(0, 0, 10));
 			right_wall.draw(Color(0, 0, 10));
 			timer_box.drawFrame(3);
+			highest = Min(highest, ball.circle.y);
 			Rect(0, 600 - gravity_frame * 5 / 3, 50, gravity_frame * 5 / 3).draw(Arg::top = Color(255, 130, 255), Arg::bottom = Color(255, 50, 255));
 			font100_regular(U"{}:{:0>2}"_fmt(timer / 60 / 60, timer / 60 % 60)).drawAt(timer_box.center());
 			timer++;
+			ClearPrint();
+			Print << ball.circle.center;
 		}
 		else if (status == 12) {
 
