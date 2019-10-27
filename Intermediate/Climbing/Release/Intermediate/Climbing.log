@@ -23,7 +23,7 @@ C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(640,26): warn
 C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(333): warning C4701: 初期化されていない可能性のあるローカル変数 'mode' が使用されます
 C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(447): warning C4701: 初期化されていない可能性のあるローカル変数 'timer' が使用されます
 C:\Users\Tomohito.H\source\repos\TMJN-P\Climbing\Climbing\Main.cpp(433): warning C4701: 初期化されていない可能性のあるローカル変数 'difficulty' が使用されます
-  1 of 748 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 748 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   コード生成が終了しました。

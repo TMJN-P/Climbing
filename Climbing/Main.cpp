@@ -330,10 +330,10 @@ void Main() {
 				if (MouseL.down()) {
 					difficulty = 0;
 					status = 10;
-					for (int i = -Random(300, 450); (mode == 0 && i <= 14500) || (mode == 1 && i <= 100000); i += Random(70, 140)) {
+					for (int i = -Random(300, 450); (mode == 0 && i <= 14500) || (mode == 1 && i <= 100000); i += Random(80, 150)) {
 						int tmp = Random(50, 600);
-						int left = Max(50, tmp - Random(120, 220));
-						int right = Min(600, tmp + Random(120, 220));
+						int left = Max(50, tmp - Random(100, 180));
+						int right = Min(600, tmp + Random(100, 180));
 						scaffold.push_back(Rect(left, -i, right - left, 10));
 					}
 					for (int i = Random(600, 3000); (mode == 0 && i <= 14500) || (mode == 1 && i <= 100000); i += Random(600, 3000)) {
@@ -354,10 +354,10 @@ void Main() {
 				if (MouseL.down()) {
 					difficulty = 1;
 					status = 10;
-					for (int i = -Random(300, 450); (mode == 0 && i <= 14500) || (mode == 1 && i <= 100000); i += Random(80, 160)) {
+					for (int i = -Random(300, 450); (mode == 0 && i <= 14500) || (mode == 1 && i <= 100000); i += Random(90, 160)) {
 						int tmp = Random(50, 600);
-						int left = Max(50, tmp - Random(90, 150));
-						int right = Min(600, tmp + Random(90, 150));
+						int left = Max(50, tmp - Random(80, 140));
+						int right = Min(600, tmp + Random(80, 140));
 						scaffold.push_back(Rect(left, -i, right - left, 10));
 					}
 					for (int i = Random(800, 4000); (mode == 0 && i <= 14500) || (mode == 1 && i <= 100000); i += Random(800, 4000)) {
